@@ -1,9 +1,9 @@
-# Proof run, 2026-10-23 (HQ, Windows 11)
+# Proof run, 2026-10-23 (Windows 11)
 
-1. `python build_kit.py --copy-to <Hub>/10-Business/CBFC-Tax/FinanceKit`: `leak scan: 0 hits`, 46 files, and the
+1. `python build_kit.py --copy-to <folder>`: `leak scan: 0 hits`, 46 files, and the
    Run-8 byte-copy check compared 4483 live-data files. With six planted leaks, the scan refused all 8 hits: drive
-   path, `\Hub\`, `/Hub/`, `py -3`, client code, Run-8 reference, settings file with hooks, and a byte copy.
-2. Unzipped into a fresh `D:\tmp\scratch\fk6fb8\proof\`. From the kit folder:
+   path, a Hub-folder path with each kind of slash, `py -3`, client code, Run-8 reference, settings file with hooks, and a byte copy.
+2. Unzipped into a fresh, empty folder. From the kit folder:
    `python .claude/comms/comms.py post finance-floor hal --to lila ...` printed `posted #1 on finance-floor` and `read`
    printed it back. The database was created at `<kit>/.claude/comms.db`. A read from `sample-company/` found the
    same post, so the database path depends on the kit folder, not the current directory.
@@ -18,10 +18,10 @@
    - Also found, not planted (the sample data supports each one): two open supplier bills not in the books, no
      balance sheet export, a $310 invoice 32 days late, no electric accrual, payroll booked from bank debits, and
      August card fees out of line.
-   - Caveat: user-level instructions on HQ (the global CLAUDE.md and rules) may still have loaded. `--setting-sources
+   - Caveat: user-level instructions on the test machine (the global CLAUDE.md and rules) may still have loaded. `--setting-sources
      project` excludes user settings and hooks, not user memory files.
 
-**Mac: not proven by machine.** HQ has no Mac. What differs on a Mac:
+**Mac: not proven by machine.** The test machine was not a Mac. What differs on a Mac:
 - Python is `python3`; there is no `python`. Every agent file says to use `python3` and fall back to `python` on
   Windows.
 - The first `python3` run on a Mac without developer tools opens a "command line developer tools" install prompt. The
